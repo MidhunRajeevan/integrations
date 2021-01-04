@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns2="http://service.adv.rta" xmlns:ns1="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicense/1_0" xmlns:tns="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicenseWSDL/1_0/DEGTradeLicense1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicenseWSDL/1_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="DEGTradeLicense1" targetNamespace="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicenseWSDL/1_0/DEGTradeLicense1">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://service.adv.rta"/>
+        </xs:schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicense/1_0" targetNamespace="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicense/1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <simpleType name="ExpiryDate">
+                <restriction base="date"/>
+            </simpleType>
+            <simpleType name="FaultCode">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="FaultDescription">
+                <restriction base="string"/>
+            </simpleType>
+            <complexType name="FaultMessage">
+                <sequence>
+                    <element name="FaultCode" type="tns:FaultCode"/>
+                    <element name="FaultDescription" type="tns:FaultDescription"/>
+                </sequence>
+            </complexType>
+            <complexType name="InsertTradeLicenseRequest">
+                <sequence>
+                    <element name="ExpiryDate" type="tns:ExpiryDate"/>
+                    <element name="IssueDate" type="tns:IssueDate"/>
+                </sequence>
+            </complexType>
+            <complexType name="InsertTradeLicenseResponse">
+                <sequence>
+                    <element name="TradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                </sequence>
+            </complexType>
+            <simpleType name="IssueDate">
+                <restriction base="date"/>
+            </simpleType>
+            <complexType name="RetrieveAllTradeLicenseRequestType">
+                <sequence>
+                    <element ref="tns:TradeLicenseNumber"/>
+                </sequence>
+            </complexType>
+            <complexType name="TradeLicenseDetailsType">
+                <sequence>
+                    <element ref="tns:TradeLicenseNumber"/>
+                    <element name="Source" type="string"/>
+                    <element name="CompanyType" type="string"/>
+                    <element name="LicenseName_En" type="string"/>
+                    <element name="LicenseName_Ar" type="string" minOccurs="0"/>
+                    <element ref="tns:IssuingAuthority"/>
+                    <element ref="tns:IssueDate"/>
+                    <element ref="tns:ExpiryDate"/>
+                    <element ref="tns:PhoneNo" minOccurs="0"/>
+                    <element ref="tns:MobileNo" minOccurs="0"/>
+                    <element ref="tns:FaxNo" minOccurs="0"/>
+                    <element ref="tns:Pobox" minOccurs="0"/>
+                    <element name="CompanyEmail" type="string" minOccurs="0"/>
+                    <element name="Emirate" type="string" minOccurs="0"/>
+                    <element name="Country" type="string" minOccurs="0"/>
+                    <element name="City" type="string" minOccurs="0"/>
+                    <element name="RegisteredAddress_En" type="string" minOccurs="0"/>
+                    <element name="RegisteredAddress_Ar" type="string" minOccurs="0"/>
+                    <element ref="tns:attributes" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <simpleType name="TradeLicenseNumber">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="TradeLicenseStatus">
+                <restriction base="string">
+                    <enumeration value="Active"/>
+                    <enumeration value="Inactive"/>
+                    <enumeration value="NonExistant"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="TradeLicenseValid">
+                <restriction base="boolean"/>
+            </simpleType>
+            <complexType name="ValidateTradeLicenseRequest">
+                <sequence>
+                    <element name="vlTradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                    <element name="vlExpiryDate" type="tns:ExpiryDate"/>
+                    <element name="vlIssueDate" type="tns:IssueDate"/>
+                </sequence>
+            </complexType>
+            <complexType name="ValidateTradeLicenseResponse">
+                <sequence>
+                    <element name="vlrsvlTradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                    <element name="vlrsTradeLicenseValid" type="tns:TradeLicenseValid"/>
+                </sequence>
+            </complexType>
+            <complexType name="getTradeLicenseStatusRequest">
+                <sequence>
+                    <element name="gtstTradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                </sequence>
+            </complexType>
+            <complexType name="getTradeLicenseStatusResponse">
+                <sequence>
+                    <element name="gtstTradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                    <element name="gtstTradeLicenseStatus" type="tns:TradeLicenseStatus"/>
+                </sequence>
+            </complexType>
+            <element name="RetrieveAllTradeLicenseRequest" type="tns:RetrieveAllTradeLicenseRequestType"/>
+            <element name="RetrieveAllTradeLicenseResponse">
+                <complexType>
+                    <sequence>
+                        <element name="TradeLicenseDetails" type="tns:TradeLicenseDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="RetrieveTradeLicenseRequest">
+                <complexType>
+                    <sequence>
+                        <element name="TradeLicenseNumber" type="tns:TradeLicenseNumber"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="RetrieveTradeLicenseResponse">
+                <complexType>
+                    <sequence>
+                        <element name="TradeLicenseDetails">
+                            <complexType>
+                                <sequence>
+                                    <element ref="tns:TradeLicense"/>
+                                </sequence>
+                            </complexType>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="TradeLicenseNumber" type="string"/>
+            <element name="attribute">
+                <complexType>
+                    <sequence>
+                        <element name="name" type="string"/>
+                        <element name="value" type="string" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="attributes">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:attribute" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <complexType name="obsoleteField">
+                <simpleContent>
+                    <extension base="string"/>
+                </simpleContent>
+            </complexType>
+            <element name="Activities">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Activity" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Activity">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                        <element ref="tns:Status"/>
+                        <element ref="tns:AddDate"/>
+                        <element ref="tns:CancelDate" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AddDate" type="string"/>
+            <element name="Address" type="string"/>
+            <element name="Area">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AuthorityLicenseNumber" type="string"/>
+            <element name="AuthorizedDepartments">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Department" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="BirthDate" type="string"/>
+            <element name="Building">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:BuildingNo"/>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="BuildingNo" type="string"/>
+            <element name="BuildingNumber" type="string"/>
+            <element name="CancelDate" type="string"/>
+            <element name="Category">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ChamberOfCommerceNumber" type="string"/>
+            <element name="CommerceNumber" type="string"/>
+            <element name="CommerceRegisterType">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CommerceRegistry">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:RegisterSerialNumber"/>
+                        <element ref="tns:UCRNumber"/>
+                        <element ref="tns:CommerceNumber"/>
+                        <element ref="tns:CompanyName" minOccurs="0"/>
+                        <element ref="tns:MainLicenseNumber"/>
+                        <element ref="tns:CommerceRegisterType"/>
+                        <element ref="tns:LegalType"/>
+                        <element ref="tns:Nationality"/>
+                        <element ref="tns:IssueDate"/>
+                        <element ref="tns:ExpiryDate"/>
+                        <element ref="tns:CancelDate"/>
+                        <element ref="tns:PaidUpCapital"/>
+                        <element ref="tns:NominalCapital"/>
+                        <element ref="tns:Address"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CommerceRegistryActivity">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Activity" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Community">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CompanyName">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ContactNumber">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:PhoneNo" minOccurs="0"/>
+                        <element ref="tns:MobileNo" minOccurs="0"/>
+                        <element ref="tns:FaxNo" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="DataArea">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                        <element ref="tns:TradeLicense"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Date" type="string"/>
+            <element name="Department">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="DepartmentUserArea">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Address"/>
+                        <element ref="tns:Pobox"/>
+                        <element ref="tns:eMail"/>
+                        <element ref="tns:ParcelId"/>
+                        <element ref="tns:BuildingNumber"/>
+                        <element ref="tns:FloorNumber"/>
+                        <element ref="tns:SuiteNumber"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="DunsID" type="string"/>
+            <element name="EmiratesID" type="string"/>
+            <element name="ExpiryDate" type="string"/>
+            <element name="FaxNo" type="string"/>
+            <element name="FloorNumber" type="string"/>
+            <element name="Id" type="string"/>
+            <element name="InitialApprovalNumber" type="string"/>
+            <element name="IssueAuthority">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                        <element ref="tns:AuthorityLicenseNumber" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="IssueDate" type="string"/>
+            <element name="IssuingAuthority" type="string"/>
+            <element name="Latitude" type="string"/>
+            <element name="LegalType">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="LicenseAddress">
+                <complexType mixed="true">
+                    <sequence>
+                        <element ref="tns:ParcelID"/>
+                        <element ref="tns:Address"/>
+                        <element ref="tns:Area"/>
+                        <element ref="tns:SubArea"/>
+                        <element ref="tns:Community"/>
+                        <element ref="tns:Unit"/>
+                        <element ref="tns:Building"/>
+                        <element ref="tns:Street"/>
+                        <element ref="tns:Longitude"/>
+                        <element ref="tns:Latitude"/>
+                        <element ref="tns:QRCode"/>
+                        <element ref="tns:RentContractNo"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="LicenseNationality">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="LicenseNumber" type="string"/>
+            <element name="LicenseStatus">
+                <complexType mixed="true">
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Longitude" type="string"/>
+            <element name="MainLicenseNumber" type="string"/>
+            <element name="MasterData">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:LicenseNumber"/>
+                        <element ref="tns:IssueAuthority" minOccurs="0"/>
+                        <element ref="tns:InitialApprovalNumber" minOccurs="0"/>
+                        <element ref="tns:DunsID" minOccurs="0"/>
+                        <element ref="tns:CommerceNumber"/>
+                        <element ref="tns:ChamberOfCommerceNumber"/>
+                        <element ref="tns:TradeNameDetail" minOccurs="0"/>
+                        <element ref="tns:ContactNumber"/>
+                        <element ref="tns:IssueDate"/>
+                        <element ref="tns:ExpiryDate"/>
+                        <element ref="tns:CancelDate" minOccurs="0"/>
+                        <element ref="tns:LicenseStatus" minOccurs="0"/>
+                        <element ref="tns:Category"/>
+                        <element ref="tns:LicenseAddress" minOccurs="0"/>
+                        <element ref="tns:PrintRemarks" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="MobileNo" type="string"/>
+            <element name="Name">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Nationality">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="NominalCapital" type="string"/>
+            <element name="Number" type="string"/>
+            <element name="PaidUpCapital" type="string"/>
+            <element name="ParcelID" type="string"/>
+            <element name="ParcelId" type="string"/>
+            <element name="Partner">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Id"/>
+                        <element ref="tns:Name"/>
+                        <element ref="tns:UnifiedFileNumber" minOccurs="0"/>
+                        <element ref="tns:EmiratesID" minOccurs="0"/>
+                        <element ref="tns:BirthDate" minOccurs="0"/>
+                        <element ref="tns:PersonCategory"/>
+                        <element ref="tns:PercentOwnership"/>
+                        <element ref="tns:PassportNumber"/>
+                        <element ref="tns:ResidenceNumber"/>
+                        <element ref="tns:Nationality"/>
+                        <element ref="tns:LegalType"/>
+                        <element ref="tns:Status"/>
+                        <element ref="tns:AddDate"/>
+                        <element ref="tns:CancelDate" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Partners">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Partner" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="PassportNumber" type="string"/>
+            <element name="PercentOwnership" type="string"/>
+            <element name="PersonCategory">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="PhoneNo" type="string"/>
+            <element name="Pobox" type="string"/>
+            <element name="PrintRemarks">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Remark" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Procedure">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Procedures">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Procedure" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="QRCode" type="string"/>
+            <element name="RegisterSerialNumber" type="string"/>
+            <element name="Remark">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="RentContractNo" type="string"/>
+            <element name="ResidenceNumber" type="string"/>
+            <element name="Status">
+                <complexType mixed="true">
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Street">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:StreetNo"/>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="StreetNo" type="string"/>
+            <element name="SubArea">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="SuiteNumber" type="string"/>
+            <element name="SyncTradeLicense">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                        <element ref="tns:DataArea"/>
+                    </sequence>
+                    <attribute name="languageCode" type="string"/>
+                    <attribute name="releaseID" type="string"/>
+                    <attribute name="systemEnvironmentCode" type="string"/>
+                    <attribute name="versionID" type="string"/>
+                </complexType>
+            </element>
+            <element name="TradeLicense">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:MasterData"/>
+                        <element ref="tns:CommerceRegistry" minOccurs="0"/>
+                        <element ref="tns:CommerceRegistryActivity" minOccurs="0"/>
+                        <element ref="tns:Activities"/>
+                        <element ref="tns:Partners"/>
+                        <element ref="tns:Transactions" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="TradeName">
+                <complexType mixed="true">
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="TradeNameDetail">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:TradeNameSerial"/>
+                        <element ref="tns:TradeName"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="TradeNameSerial" type="string"/>
+            <element name="Transactions">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Number"/>
+                        <element ref="tns:Date"/>
+                        <element ref="tns:Type"/>
+                        <element ref="tns:Procedures"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="Type">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UCRNumber" type="string"/>
+            <element name="UnifiedFileNumber" type="string"/>
+            <element name="Unit">
+                <complexType>
+                    <sequence>
+                        <element ref="tns:Value" minOccurs="0"/>
+                        <element name="UnitNo" form="unqualified" type="string" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UserArea">
+                <complexType>
+                    <choice>
+                        <element ref="tns:AuthorizedDepartments" minOccurs="0"/>
+                        <element ref="tns:DepartmentUserArea" minOccurs="0"/>
+                    </choice>
+                </complexType>
+            </element>
+            <element name="Value">
+                <complexType>
+                    <sequence>
+                        <element name="Code" form="unqualified" type="string" minOccurs="0"/>
+                        <element name="Description_AR" form="unqualified" type="string" minOccurs="0"/>
+                        <element name="Description_EN" form="unqualified" type="string" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="eMail" type="string"/>
+        </schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicenseWSDL/1_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.rta.ae/Activematrix/DEGIntegration/TradeLicense/1_0"/>
+            <xs:import/>
+            <xs:element name="ValidateTradeLicenseFault" type="ns1:FaultMessage"/>
+            <xs:element name="ValidateTradeLicenseRequest" type="ns1:ValidateTradeLicenseRequest"/>
+            <xs:element name="ValidateTradeLicenseResponse" type="ns1:ValidateTradeLicenseResponse"/>
+            <xs:element name="getTradeLicenseStatusFault" type="ns1:FaultMessage"/>
+            <xs:element name="getTradeLicenseStatusRequest" type="ns1:getTradeLicenseStatusRequest"/>
+            <xs:element name="getTradeLicenseStatusResponse" type="ns1:getTradeLicenseStatusResponse"/>
+            <xs:element name="retrieveTradeLicenseFault" type="ns1:FaultMessage"/>
+        </xs:schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.adv.rta" targetNamespace="http://service.adv.rta" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <complexType name="syncTradeLicense">
+                <sequence>
+                    <element name="xmlTradeLicense" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="syncTradeLicenseResponse">
+                <sequence>
+                    <element name="syncTradeLicenseReturn" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <element name="syncTradeLicense" type="tns:syncTradeLicense"/>
+            <element name="syncTradeLicenseResponse" type="tns:syncTradeLicenseResponse"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getTradeLicenseStatusRequest">
+        <wsdl:part name="parameters" element="ns0:getTradeLicenseStatusRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getTradeLicenseStatusResponse">
+        <wsdl:part name="parameters" element="ns0:getTradeLicenseStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getTradeLicenseStatusFault">
+        <wsdl:part name="parameters" element="ns0:getTradeLicenseStatusFault"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveTradeLicenseRequest">
+        <wsdl:part name="parameters" element="ns1:RetrieveTradeLicenseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="reteieveTradeLicenseResponse">
+        <wsdl:part name="parameters" element="ns1:RetrieveTradeLicenseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveTradeLicenseFault">
+        <wsdl:part name="parameters" element="ns0:retrieveTradeLicenseFault"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveAllTradeLicenseRequest">
+        <wsdl:part name="request" element="ns1:RetrieveAllTradeLicenseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="reteieveAllTradeLicenseResponse">
+        <wsdl:part name="response" element="ns1:RetrieveAllTradeLicenseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateTradeLicenseRequest">
+        <wsdl:part name="parameters" element="ns0:ValidateTradeLicenseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateTradeLicenseResponse">
+        <wsdl:part name="parameters" element="ns0:ValidateTradeLicenseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateTradeLicenseFault">
+        <wsdl:part name="parameters" element="ns0:ValidateTradeLicenseFault"/>
+    </wsdl:message>
+    <wsdl:portType name="DEGTradeLicense">
+        <wsdl:operation name="getStatus">
+            <wsdl:input message="tns:getTradeLicenseStatusRequest"/>
+            <wsdl:output message="tns:getTradeLicenseStatusResponse"/>
+            <wsdl:fault name="fault" message="tns:getTradeLicenseStatusFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveTradeLicense">
+            <wsdl:input message="tns:retrieveTradeLicenseRequest"/>
+            <wsdl:output message="tns:reteieveTradeLicenseResponse"/>
+            <wsdl:fault name="fault1" message="tns:retrieveTradeLicenseFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveAllTradeLicenseDetails">
+            <wsdl:input message="tns:retrieveAllTradeLicenseRequest"/>
+            <wsdl:output message="tns:reteieveAllTradeLicenseResponse"/>
+            <wsdl:fault name="fault1" message="tns:retrieveTradeLicenseFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="Validate">
+            <wsdl:input message="tns:ValidateTradeLicenseRequest"/>
+            <wsdl:output message="tns:ValidateTradeLicenseResponse"/>
+            <wsdl:fault name="fault" message="tns:ValidateTradeLicenseFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOAPService_DEGTLReadService" type="tns:DEGTradeLicense">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getStatus">
+            <wsdl:documentation/>
+            <soap:operation style="document" soapAction="getStatus"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault use="literal" name="fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveTradeLicense">
+            <wsdl:documentation/>
+            <soap:operation style="document" soapAction="retrieveTradeLicense"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveAllTradeLicenseDetails">
+            <wsdl:documentation/>
+            <soap:operation style="document" soapAction="retrieveAllTradeLicenseDetails"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="request"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="response"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Validate">
+            <wsdl:documentation/>
+            <soap:operation style="document" soapAction="Validate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault use="literal" name="fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DEGTradeLicense1">
+        <wsdl:port name="SOAPService_DEGTLReadService" binding="tns:SOAPService_DEGTLReadService">
+            <soap:address location="http://localhost:80/dEGTradeLicense/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

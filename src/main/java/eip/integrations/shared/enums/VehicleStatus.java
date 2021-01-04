@@ -3,5 +3,16 @@ package eip.integrations.shared.enums;
 public enum VehicleStatus {
   ACTIVE,
   INACTIVE,
-  ARCHIVED
+  ARCHIVED,
+  AVAILABLE,
+  RENTED,
+  BORROWED,
+  IN_USE,
+  MAINTENANCE,
+  UNAVAILABLE,
+  BLOCKED,
+  EXPIRED,
+  DELETED,
+  BORROWING_INITIATED, 
+  BORROWING_RETURNED
 }

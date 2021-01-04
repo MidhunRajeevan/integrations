@@ -1,8 +1,5 @@
 package eip.integrations.shared.enums;
 
 public enum MaritalStatus {
-  MARRIED,
-  SINGLE,
-  WIDOWED,
-  UNKNOWN
+	MARRIED, SINGLE, WIDOWED, UNKNOWN, DIVORCED
 }
