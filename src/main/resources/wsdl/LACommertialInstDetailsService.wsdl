@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns1="http://www.rta.ae/ActiveMatrix/ESB/faultault/faultSchema" xmlns:tns="http://www.rta.ae/EIP/LACommercialInstituteDetailsService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://http://www.rta.ae/EIP/LACommercialInstituteDetailsService/LACommercialInstituteDetailsServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="LACommercialInstituteDetailsService" targetNamespace="http://www.rta.ae/EIP/LACommercialInstituteDetailsService">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.rta.ae/ActiveMatrix/ESB/faultault/faultSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.rta.ae/ActiveMatrix/ESB/faultault/faultSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:complexType name="FaultType">
+                <xs:sequence>
+                    <xs:element name="faultCode" type="xs:string"/>
+                    <xs:element name="faultString" type="xs:string"/>
+                    <xs:element name="faultDetail" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Fault" type="ns1:FaultType"/>
+        </xs:schema>
+        <xs:schema xmlns="http://http://www.rta.ae/EIP/LACommercialInstituteDetailsService/LACommercialInstituteDetailsServiceSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://http://www.rta.ae/EIP/LACommercialInstituteDetailsService/LACommercialInstituteDetailsServiceSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:complexType name="companyDetailResponseBodyType">
+                <xs:sequence>
+                    <xs:element name="OrginizationId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgActivityCode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgCreatedOn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ISCARRENTAL" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgTrafficClass" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgTrafficClassA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgTrafficClassE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgActivityDescE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgActivityDescA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLegalClassCode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLegalTypeA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLegalTypeE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgTypeCode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgTypeA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLicenseTypeNo" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLicenseTypeDescA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrgLicenseTypeDescE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ParentOrgId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ParentOrgNameE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ParentOrgNameA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RootOrgId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RootOrgNameA" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RootOrgNameE" type="xs:string" minOccurs="0"/>
+                    <xs:element name="OrganizationCode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="companyName" type="xs:string"/>
+                    <xs:element name="companyNameAR" type="xs:string"/>
+                    <xs:element name="email" type="xs:string" minOccurs="0"/>
+                    <xs:element name="address" type="xs:string" minOccurs="0"/>
+                    <xs:element name="companyType" type="xs:string" minOccurs="0"/>
+                    <xs:element name="parentCompanyName" type="xs:string"/>
+                    <xs:element name="phone" type="xs:string" minOccurs="0"/>
+                    <xs:element name="mobile" type="xs:string" minOccurs="0"/>
+                    <xs:element name="fax" type="xs:string" minOccurs="0"/>
+                    <xs:element name="poBox" type="xs:string" minOccurs="0"/>
+                    <xs:element name="tradeLicenseNo" type="xs:string" minOccurs="0"/>
+                    <xs:element name="trafficFileNo" type="xs:decimal" minOccurs="0"/>
+                    <xs:element name="issuanceDate" type="xs:string" minOccurs="0"/>
+                    <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+                    <xs:element name="issuanceAuthority" type="xs:string" minOccurs="0"/>
+                    <xs:element name="tradeLicenseOwnerAddress" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="companyDetailResponseType">
+                <xs:sequence>
+                    <xs:element name="responseBody" type="ns0:companyDetailResponseBodyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="responseType">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="responseCode" type="xs:integer"/>
+                                <xs:element name="responseDescription" type="xs:string"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCommercialInstituteDetailsRequestType">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="Period" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="startDateTime" type="xs:string"/>
+                                    <xs:element name="endDateTime" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="orgID" type="xs:decimal" minOccurs="0"/>
+                        <xs:element name="trafficNo" type="xs:decimal" minOccurs="0"/>
+                    </xs:choice>
+                    <xs:element name="ActivityCodes" type="xs:string" minOccurs="0"/>
+                    <xs:element name="appId" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCommercialInstituteDetailsResponseType">
+                <xs:sequence>
+                    <xs:element name="getCompanyDetailResponse" type="ns0:companyDetailResponseType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="headerType">
+                <xs:sequence>
+                    <xs:element name="sourceSystemType" type="xs:string"/>
+                    <xs:element name="sourceSystemId" type="xs:string"/>
+                    <xs:element name="transactionId" type="xs:string"/>
+                    <xs:element name="transactionDateTime" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getCommercialInstituteDetailsRequest" type="ns0:getCommercialInstituteDetailsRequestType"/>
+            <xs:element name="getCommercialInstituteDetailsResponse" type="ns0:getCommercialInstituteDetailsResponseType"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getCommercialInstituteDetailsRequest">
+        <wsdl:part name="getCommercialInstituteDetailsRequest" element="ns0:getCommercialInstituteDetailsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getCommercialInstituteDetailsResponse">
+        <wsdl:part name="getCommercialInstituteDetailsResponse" element="ns0:getCommercialInstituteDetailsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="fault">
+        <wsdl:part name="fault" element="ns1:Fault"/>
+    </wsdl:message>
+    <wsdl:portType name="LACommercialInstituteDetailsService">
+        <wsdl:operation name="getCommercialInstituteDetails">
+            <wsdl:input message="tns:getCommercialInstituteDetailsRequest"/>
+            <wsdl:output message="tns:getCommercialInstituteDetailsResponse"/>
+            <wsdl:fault name="fault1" message="tns:fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOAPService_LACommercialInstituteDetailsService" type="tns:LACommercialInstituteDetailsService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getCommercialInstituteDetails">
+            <wsdl:documentation/>
+            <soap:operation style="document" soapAction="getCommercialInstituteDetails"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="getCommercialInstituteDetailsRequest"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="getCommercialInstituteDetailsResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LACommercialInstituteDetailsService">
+        <wsdl:port name="SOAPService_LACommercialInstituteDetailsService" binding="tns:SOAPService_LACommercialInstituteDetailsService">
+            <soap:address location="https://RTAMHTIBSTGEMS1.rtatestdom.local:11098/LACommercialInstituteDetailsService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
