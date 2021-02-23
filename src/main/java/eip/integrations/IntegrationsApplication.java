@@ -27,7 +27,7 @@ public class IntegrationsApplication {
 		String version = getClass().getPackage().getImplementationVersion();
 
 		return new OpenAPI().addServersItem(new Server().url("https://api.rta.ae/tars"))
-				.info(new Info().title("TARS Integration EIP").description("EIP Integration Services for TARS.").version(version)
+				.info(new Info().title("Integration EIP").description("EIP Integration Services for TARS.").version(version)
 						.contact(new Contact().url("https://www.rta.ae").name("TARS Relationship Manager")).license(
 								new License().name("Roads and Transport Authority. All Rights Reserved").url("https://www.rta.ae")));
 	}
